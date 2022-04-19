@@ -9,6 +9,7 @@ urlpatterns = [
     # path('login/', views.user_login, name='login')
     path('', views.dashboard, name='dashboard'),
     path('', include('django.contrib.auth.urls')),
+    path('register/', views.user_registration, name='register'),
 
     # django.contrib.auth.urls contains the following URL patterns
     # path('login/', auth_views.LoginView.as_view(), name='login'),
