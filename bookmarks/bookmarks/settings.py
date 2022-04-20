@@ -133,6 +133,11 @@ LOGOUT_URL = 'logout'
 # This is a Development Environment replacement for an SMTP server
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+]
+
 # Allows Django to server media files uploaded by Users
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
