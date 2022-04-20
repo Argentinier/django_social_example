@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.dashboard, name='dashboard'),
     path('', include('django.contrib.auth.urls')),
     path('register/', views.user_registration, name='register'),
+    path('edit/', views.edit, name='edit'),
 
     # django.contrib.auth.urls contains the following URL patterns
     # path('login/', auth_views.LoginView.as_view(), name='login'),
