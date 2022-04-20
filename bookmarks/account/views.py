@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -48,15 +49,12 @@ def edit(request):
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)
 
-        if user_form.is_valid():
+        if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
-        else:
-            user_form = UserEditForm(instance=request.user)
-
-        if profile_form.is_valid():
             profile_form.save()
+            messages.success(request=request, message='Your Profile information was saved successfully!')
         else:
-            profile_form = ProfileEditForm(instance=request.user.profile)
+            messages.error(request=request, message='Fail to update information. Check the form fields error messages.')
 
     return render(
         request=request,
