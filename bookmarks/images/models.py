@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import truncatewords
+from django.urls import reverse
 from django.utils.text import slugify
 
 
@@ -28,6 +29,9 @@ class Image(TimestampsMixin):
     @property
     def likes(self):
         return self.users_like.count
+
+    def get_absolute_url(self):
+        return reverse(f'images:detail', args=[self.id, self.slug])
 
     def __str__(self):
         return self.title
